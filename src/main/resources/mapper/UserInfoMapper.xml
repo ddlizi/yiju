@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yiju.dao.IUserDao" >
+
+    <!--   登录  -->
+    <select id="findUserByPhone" parameterType="java.lang.String" resultType="com.yiju.bean.UserInfo">
+        select * from tb_user where phone=#{phone}
+    </select>
+
+
+    <!--  注册  -->
+    <insert id="addUser" parameterType="String">
+        insert into tb_user(phone,password) values (#{phone},#{password})
+    </insert>
+
+
+    <!--   修改个人信息  -->
+    <update id="saveEdit" parameterType="com.yiju.bean.UserInfo">
+        update tb_user
+        set truename=#{truename},nickname=#{nickname},gender=#{gender},city=#{city}
+        where phone=#{phone}
+    </update>
+
+
+    <!--  根据user-id 去查询tb_user_auth   -->
+    <select id="findUserAuthById" parameterType="Integer" resultType="com.yiju.bean.UserAuth">
+        select * from tb_user_auth where user_id=#{userId}
+    </select>
+
+
+
+
+</mapper>
